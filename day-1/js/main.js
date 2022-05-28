@@ -47,6 +47,19 @@
  * Utilizar o var não é uma boa prática. Procure sempre usar const ou let 
  * para a declaração de variáveis;
  * 
+ * let -> permite que você altere o estado da variável
+ * 
+ * Ex.
+ * 
+ * let nome = 'Gustavo';
+ * nome = 'João';
+ * 
+ * console.log(nome) // João
+ * 
+ * const -> não permite que seu valor seja alterado;
+ * 
+ * const pi = 3.14; // 'pi' não pode mais ser alterado, como acontece no let
+ * 
  * 
  * 
  */
