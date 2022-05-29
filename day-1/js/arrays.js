@@ -167,8 +167,8 @@ console.log(numbers.slice(2)); // [3, 4, 5]
 console.log(numbers.slice(1, 4)); // [2, 3, 4]
 
 /**
- * splice(nItemsToBeRemoved, nItemsToBePresented) -> remove n items 
- * a partir da posição inicial do array e apresenta o restante dele
+ * splice(initialIndex, nTimesRemoved, nItemsToBeAdd) -> remove e adiciona items 
+ * de acordo com a posição incial informada
  */
 
 numbers = [1, 2, 3, 4, 5];
@@ -214,16 +214,14 @@ console.log(letters.reverse()); // letters.sort().reverse() -> ordem decrescente
 
 // Arrays de arrays (what?)
 
-let firstNums = [1,2,3];
-let secondNums = [4,5,6];
+let firstNums = [1, 2, 3];
+let secondNums = [4, 5, 6];
 
 const arrayOfArray = [
     firstNums,
-    secondNums   
+    secondNums
 ]
 
 console.log(arrayOfArray); // [[1,2,3], [4,5,6]]
 console.log(arrayOfArray[0]); // [1,2,3]
 console.log(arrayOfArray[1]); // [4,5,6] 
-
-
