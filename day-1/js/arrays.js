@@ -167,8 +167,8 @@ console.log(numbers.slice(2)); // [3, 4, 5]
 console.log(numbers.slice(1, 4)); // [2, 3, 4]
 
 /**
- * splice(initialIndex, nTimesRemoved, nItemsToBeAdd) -> remove e adiciona items 
- * de acordo com a posição incial informada
+ * splice(nItemsToBeRemoved, nItemsToBePresented) -> remove n items 
+ * a partir da posição inicial do array e apresenta o restante dele
  */
 
 numbers = [1, 2, 3, 4, 5];
