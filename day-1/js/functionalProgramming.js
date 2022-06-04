@@ -45,8 +45,8 @@ console.log(countriesWithLand);
 
 /**
  * reduce -> Utilizamos quando precisamos fazer operações com os elementos do array (normalmente operações matemáticas 
- * ou de concatenação). Essa função recebe como parâmetro duas varáveis: a primeira é uma acumuladora, que armazena o resultado 
- * das operações realizadas, e a segunda faz referência ao elemento do array que está sendo acessado em tempo de execução.
+ * ou de concatenação). Essa função recebe como parâmetro duas varáveis: a primeira faz referência ao valor inicial 
+ * e a segunda faz referência ao elemento do array que está sendo acessado em tempo de execução.
  * 
  * const reducedArray = array.reduce((result, currentElement) => {
  *      return 
@@ -123,12 +123,8 @@ console.log(miscArr.every(n => n % 2 !== 0)); // false
 
 // Exercícios
 console.log('------------------------Exercicios--------------------------');
-const products = [
-    {
-        product: 'banana',
-        price: 3
-    },
-
+let products = [
+    { product: 'banana', price: 3 },
     { product: 'mango', price: 6 },
     { product: 'potato', price: ' ' },
     { product: 'avocado', price: 8 },
@@ -177,9 +173,71 @@ sum = products.map(item => item.price)
 
 console.log(sum);
 
-// 7 - Calular o preço dos produtos utilizando apenas o reduce;
+// 7 - Calular o total do preço dos produtos utilizando apenas o reduce;
 
-sum = 0;
-sum = products.reduce((result, { price }) => result+=price);
+products = [
+    { product: 'banana', price: 3 },
+    { product: 'mango', price: 6 },
+    { product: 'potato', price: ' ' },
+    { product: 'avocado', price: 8 },
+    { product: 'coffee', price: 10 },
+    { product: 'tea', price: '' },
+]
 
-console.log(`sum with reduce only = ${sum}`);
+const sumWithReduceOnly = products.reduce((resultado, product) => {
+    let subTotal = 0;
+    if (typeof (product.price) === 'number') {
+        subTotal = product.price;
+    }
+
+    return resultado + subTotal;
+}, 0)
+
+console.log('sum with reduce only = ', sumWithReduceOnly);
+
+// 8 - Encontra o primeiro produto sem preço
+
+const noPrice = products.find((item) => typeof (item.price) !== 'number');
+
+console.log(noPrice);
+
+// 9 - Retornar a posição do primeiro produto sem preço
+
+const indexOfNoPrice = products.findIndex(item => typeof (item.price) !== 'number');
+console.log(`position of noPrice = ${indexOfNoPrice}`);
+
+// 10 - Verificar se alguns produtos não possuem preço
+
+const someWithNoPrice = products.some(item => typeof (item.price) !== 'number');
+console.log(`some products does not have price? ${someWithNoPrice}`);
+
+// 11 - Verificar se todos os produtos possuem preço
+const everyWithPrice = products.every(item => typeof (item.price) === 'number');
+console.log(`every products does have price? ${everyWithPrice}`);
+
+/**
+* Output dos exercícios 
+* 3
+* 6
+
+* 8
+* 10
+* The price of banana is 3 euros.
+* The price of banana is 6 euros.
+* The price of banana is unknown.
+* The price of banana is 8 euros.
+* The price of banana is 10 euros.
+* The price of banana is unknown.
+*   total = 27
+*   [3, 6, ' ', 8, 10, '']
+*   [{ product: 'banana', price: 3 },
+*   { product: 'mango', price: 6 },
+*   { product: 'avocado', price: 8 },
+*   { product: 'coffee', price: 10 }]
+* 27
+* sum with reduce only = 27
+* { product: 'potato', price: ' ' }
+* position of noPrice = 2
+* some products does not have price ? true
+* every products does have price ? false
+*/
