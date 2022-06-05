@@ -45,7 +45,7 @@ console.log(countriesWithLand);
 
 /**
  * reduce -> Utilizamos quando precisamos fazer operações com os elementos do array (normalmente operações matemáticas 
- * ou de concatenação). Essa função recebe como parâmetro duas varáveis: a primeira faz referência ao valor inicial 
+ * ou de concatenação). Essa função recebe como parâmetro duas varáveis: a primeira faz referência a uma variável acumuladora
  * e a segunda faz referência ao elemento do array que está sendo acessado em tempo de execução.
  * 
  * const reducedArray = array.reduce((result, currentElement) => {
