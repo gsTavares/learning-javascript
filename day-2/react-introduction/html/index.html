@@ -1,0 +1,238 @@
+<!--
+    Para renderizar elementos JSX em um documento HTML, precisamos primeiro criar um arquivo chamado index.html.
+    Este será o único arquivo HTML presente em qualquer aplicação React, pois ela sempre é uma SPA (Single Page Application)
+
+    Existem 2 principais maneiras de iniciar um projeto React. Uma é o create-react-app utilizando o node ou yarn como package manager
+    (ou utilizando o vite) ou via CDN
+
+    Nesse primeiro contato, o método será via CDN. O documento é basicamente composto por uma <div> com a classe "root",
+    onde os elementos JSX serão renderizados, e uma tag script cujo o type será "text/babel", já que precisamos do transpilador 
+    babel.js para converter os elementos JSX e os códigos em React para JavaScript puro;
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 2 : React Introduction</title>
+
+    <style>
+        /* == General style === */
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        html,
+        body {
+            height: 100%;
+            line-height: 1.5;
+            font-family: 'Montserrat';
+            font-weight: 300;
+            color: black;
+        }
+
+        .root {
+            min-height: 100%;
+            position: relative;
+        }
+
+        .header-wrapper,
+        .main-wrapper,
+        .footer-wrapper {
+            width: 85%;
+            margin: auto;
+        }
+
+        .header-wrapper,
+        .main-wrapper {
+            padding: 10px;
+            margin: 2px auto;
+        }
+
+        h1 {
+            font-size: 70px;
+            font-weight: 300;
+        }
+
+        h2,
+        h3 {
+            font-weight: 300;
+        }
+
+        header {
+            background-color: #61dbfb;
+            padding: 10px;
+        }
+
+        main {
+            padding: 10px;
+            padding-bottom: 60px;
+            /* Height of the footer */
+        }
+
+        ul {
+            margin-left: 15px;
+        }
+
+        ul li {
+            list-style: none;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 60px;
+            /* Height of the footer */
+            background: #6cf;
+        }
+
+        .footer-wrapper {
+            font-weight: 400;
+            text-align: center;
+            line-height: 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="root"></div>
+
+    <!--Scripts CDN do babel.js-->
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        /** No React, utilizamos a manipulação da DOM apenas uma vez, que é para 
+        * capturar o nosso elemento que contém a classe "root" no nosso index.html;
+        * 
+        * a partir dele, com a função ReactDOM.render() do pacote ReactDOM, podemos renderizar os nossos componentes
+        * JSX no arquivo HTML;
+        */
+
+        const root = document.querySelector('.root');
+
+        /** Estilização de componentes JSX
+        * Para estilizar um componente, podemos criar objetos JavaScript com as propriedades CSS que 
+        * queremos adicionar a ele e, dentro da propriedade style="" desse componente, passamos o objeto JavaScript com a estilização 
+        * como valor.
+        * 
+        * Podemos utilizar o css externo também, com a tag <style> no documento HTML ou um arquivo.css e, nos componentes 
+        * JSX, adicionar a propriedade className=""
+        */
+
+        /** 
+        * const headerStyles = {
+        *   backgroundColor: '#61DBFB',
+        *   fontFamily: 'Helvetica Neue',
+        *   padding: 25,
+        *   lineHeight: 1.5
+        * }
+        * 
+        * const headerExample = (
+        *       <header style={headerStyles}></header>
+        * );
+        */
+
+        /** Injetando dados em um elemento JSX 
+        * Podemos carregar dados dinâmicos dentro de um elemento JSX. Esses dados podem ser strings, números,
+        * valores booleanos, arrays e objetos (obs: objetos como um todo não podem ser inseridos... somente as suas propriedades)
+        * 
+        * Para inserir esses dados, utilizamos chaves {}
+        */
+
+        // Injetando strings
+        const welcome = 'Welcome to 30 Days Of React';
+        const title = 'Getting Started React';
+        const subtitle = 'JavaScript Library';
+        const authorFirstName = 'Asabeneh';
+        const authorLastName = 'Yetayeh';
+        const date = new Date().toLocaleDateString();
+
+        const header = (
+            <header>
+                <div className='header-wrapper'>
+                    <h1>{welcome}</h1>
+                    <h2>{title}</h2>
+                    <h3>{subtitle}</h3>
+                    <p>Instructor: {authorFirstName} {authorLastName}</p>
+                    <small>Date: {date}</small>
+                </div>
+            </header>
+        );
+
+        // Injetando números
+        const num1 = 3;
+        const num2 = 2;
+        const yearBorn = 2002;
+        const currentYear = new Date().getFullYear();
+        const age = currentYear - yearBorn;
+
+        // Operações aritiméticas com dados são permitidas dentro de componentes JSX
+        const result = (
+            <p>
+                {num1} + {num2} = {num1 + num2}
+            </p>
+        );
+
+        const personAge = <p> {age} </p>;
+
+        // Injetando arrays
+        const techs = ['HTML', 'CSS', 'JavaScript'];
+        
+        // Formatando um componente JSX
+        const techsFormated = techs.map(tech => <li key={tech}>{tech}</li>);
+
+        const main = (
+            <main>
+                <div className='main-wrapper'>
+                    <p>
+                        Prerequisite to get started{' '}
+                        <strong>
+                            <em>react.js</em>
+                        </strong>
+                        :
+                    </p>
+                    <ul>
+                        {techsFormated}
+                    </ul>
+                    {result}
+                    {age}
+                </div>
+            </main>
+        );
+
+        // Inserindo objetos
+        const footerProps = {
+            copy: 'Copyright',
+            year: new Date().getFullYear()
+        }
+
+        const footer = (
+            <footer>
+                <div className='footer-wrapper'>
+                    <p>{footerProps.copy} {footerProps.year}</p>
+                </div>
+            </footer>
+        );
+
+        const app = (
+            <div className='app'>
+                {header}
+                {main}
+                {footer}
+            </div>
+        );
+
+
+        ReactDOM.render(app, root);
+    </script>
+</body>
+
+</html>
