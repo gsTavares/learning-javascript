@@ -178,4 +178,70 @@ const subscribeForm = (
 );
 
 
-ReactDOM.createRoot(root).render(subscribeForm);
+// ReactDOM.createRoot(root).render(subscribeForm);
+
+// 3)
+
+const cardContainer = {
+  fontFamily: 'Arial Narrow',
+  width: '100%',
+  display: 'block',
+  padding: '1.5rem'
+}
+
+const cardTop = {
+  textAlign: 'left',
+  width: '250px'
+}
+
+const cardImg = {
+  borderRadius: '50%',
+  
+  width: '250px',
+  height: '250px'
+}
+
+const skillsBox = {
+  width: '100%',
+  display: 'flex'
+}
+
+const skillItem = {
+  padding: '0.5rem',
+  borderRadius: '0.5rem',
+  color: 'white',
+  fontWeight: 'bold',
+  minWidth: '3rem',
+  backgroundColor: '#2acfcf',
+  textAlign: 'center'
+}
+
+const skills = ['HTML', 'CSS', 'JS', 'JAVA', 'REACT', 'NODE', 'MYSQL', 'POSTGRESQL', 'GIT'];
+
+let [firstSkill, ...rest] = skills;
+
+const otherSkillsStyle = {...skillItem};
+
+otherSkillsStyle.marginLeft = '0.5rem';
+
+const otherSkills = rest.map((skill) => <div key={skill} style={otherSkillsStyle}> {skill} </div>)
+
+const card = (
+  <div style={cardContainer}>
+    <div style={cardTop}>
+      <img style={cardImg} src={perfil} alt="perfil gustavo" />
+      <p style={{fontSize: '1.5rem', marginBottom: '0.5rem', textAlign: 'left', width: 'auto', fontWeight: 'bold'}}>GUSTAVO TAVARES</p>
+      <p style={{marginBottom: '0.5rem'}}>Junior Developer, Brazil</p>
+      <p style={{fontSize: '1.5rem', marginBottom: '0.5rem', textAlign: 'left', width: 'auto', fontWeight: 'bold'}}>SKILLS</p>
+    </div>
+
+    <div style={skillsBox}>
+      <div style={skillItem}> {firstSkill}</div>
+      {otherSkills}
+    </div>
+
+    <p style={{marginTop: '1.5rem'}}>Joined in {new Date().toLocaleDateString()}</p>
+  </div>
+);
+
+ReactDOM.createRoot(root).render(card);
