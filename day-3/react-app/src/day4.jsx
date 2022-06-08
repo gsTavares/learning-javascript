@@ -85,7 +85,22 @@ const hexaValue = () => {
     return '#' + color
 }
 
-const HexaColor = () => <div style={{width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '0.5rem', height: '5vh', backgroundColor: hexaValue(), color: 'white'}}>{hexaValue()}</div>
+const HexaColor = () => {
+    let hexStyle = {
+        width: '100%', 
+        display: 'flex', 
+        justifyContent: 'center',
+        alignItems: 'center', 
+        borderRadius: '0.5rem', 
+        height: '5vh', 
+        backgroundColor: hexaValue(), color: 'white'
+    }
+
+    return (
+        <div style={hexStyle}>{hexaValue()}</div>
+    );
+
+} 
 
 // The App, or the parent or the container component
 const App = () => (
