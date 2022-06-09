@@ -140,5 +140,10 @@ const App = () => {
   )
 }
 
+/**
+ * Como 'props' sempre será um objeto JS, é possível aplicar a desestrutução desse objeto para 
+ * trabalhar melhor com cada propriedade do componente
+ */
+
 const root = createRoot(document.getElementById('root'));
 root.render(<App />);
