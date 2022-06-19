@@ -54,7 +54,12 @@ class App extends React.Component {
 // Outro exemplo utilizando state
 class App2 extends React.Component {
     state = {
-        image: 'https://www.smithsstationah.com/imagebank/eVetSites/Feline/01.jpg'
+        image: 'https://www.smithsstationah.com/imagebank/eVetSites/Feline/01.jpg',
+
+        theme: {
+            backgroundColor: 'white',
+            color: 'black'
+        }
     }
 
     changeAnimal = () => {
@@ -67,9 +72,30 @@ class App2 extends React.Component {
         this.setState({ image })
     }
 
-    render(){
-        return(
-            <div className="App">
+    applyDarkTheme = () => {
+        let lightMode = {
+            backgroundColor: 'white',
+            color: 'black'
+        }
+
+        let darkMode = {
+            backgroundColor: 'black',
+            color: 'white'
+        }
+
+        let {theme: {backgroundColor, color}} = this.state
+
+        let theme = backgroundColor === lightMode.backgroundColor 
+        && color === lightMode.color ? darkMode : lightMode;
+
+        this.setState({theme});
+    }
+
+    render() {
+        let {theme: {backgroundColor, color}} = this.state
+
+        return (
+            <div className="App" style={{backgroundColor, color}}>
                 <h1>30 days of React</h1>
                 <div className="animal">
                     <img src={this.state.image} alt="animal" srcset="" />
@@ -77,6 +103,10 @@ class App2 extends React.Component {
 
                 <button onClick={this.changeAnimal}>
                     Change
+                </button>
+
+                <button onClick={this.applyDarkTheme} style={{marginLeft: '10px'}}>
+                    Change theme
                 </button>
             </div>
         )
